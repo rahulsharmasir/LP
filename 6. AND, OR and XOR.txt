@@ -1,0 +1,89 @@
+=========================================== PROGRAM (C)=====================================
+
+
+
+#include<stdio.h>
+#include<string.h>
+int main()
+{  	 
+    char str[]="Hello World";
+    int i,len;
+  	len = strlen(str);
+   	printf("\n AND ing Operation with 127\t==>  ");
+   	for(i=0;i<len;i++)
+    {
+   	    printf("%c",str[i]&127);
+ 	}
+    printf("\nXOR ing Operation with 127\t==>  ");
+    for( i=0;i<len;i++)
+    {
+        printf("%c",str[i]^127);
+    }
+    printf("\nOR ing Operation with 127\t==>  ");
+    for(i=0;i<len;i++)
+    {  
+        printf("%c",str[i]|127);
+    }
+    printf("\n");
+   return 0;
+}
+
+
+=========================================== PROGRAM (Python) ==================================
+
+
+
+string = "Hello World"
+
+and_result = ""
+or_result = ""
+xor_result = ""
+
+for char in string:
+    char_code = ord(char)
+    and_result += chr(char_code & 127)
+    or_result += chr(char_code | 127)
+    xor_result += chr(char_code ^ 127)
+
+print("AND Result: ", and_result)
+print("OR Result: ", or_result)
+print("XOR Result: ", xor_result)
+
+
+
+============================================== THEORY ==========================================
+
+
+AND Operation
+
+   There are two inputs and one output in binary AND operation. 
+   The inputs and result to a binary AND operation can only be 0 or 1.
+   The binary AND operation will always produce a 1 output if both inputs are 1 and will produce a 0 output if
+   both inputs are 0. For two different inputs, the output will be 0.
+
+OR Operation
+
+   There are two inputs and one output in binary OR operation. 
+   The inputs and result to a binary OR operation can only be 0 or 1.
+   The OR gate is a mostly used digital logic circuit. The output state of the OR gate will always be low when
+   both of the inputs states is low. 
+   Simply, if any input value in the OR gate is set to 1, then it will always return high-level output(1).
+
+XOR Operation
+
+   There are two inputs and one output in binary XOR (exclusive OR) operation. 
+   It is similar to ADD operation which takes two inputs and produces one result i.e. one output.
+   The inputs and result to a binary XOR operation can only be 0 or 1.
+   The binary XOR operation will always produce a 1 output if either of its inputs is 1 and will produce a 0
+   output if both of its inputs are 0 or 1.
+
+Algorithm
+
+   1. Start 
+   2. Take the input ‘hello world’ which is assigned to variable ‘str’ 
+   3. Perform AND operation between the string and 127. 
+   4. Perform OR operation between the string and 127
+   5. Perform XOR operation between the string and 127
+   6. Then print the result 
+   7. Stop.
+================================================================================================================

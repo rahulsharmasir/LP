@@ -1,0 +1,86 @@
+======================================== PROGRAM ====================================
+
+
+
+print("==========================================================")
+print("            ChatBot for Questioning and Answering                   ")
+print("==========================================================")
+print("You may ask any of the following questions to ChatBot:")
+print("- Hi")
+print("- How are you?")
+print("- What is Your Name?")
+print("- What is your Job?")
+print("- What were you doing yesterday?")
+print("- Quit")
+print("--------------------------------------------------------------------------")
+while True:
+    question = input("Type your question from above list: ")
+    question = question.lower()
+    if question in ['hi']:
+        print("Hello")
+        print("------------------------------------------------------------------")
+    elif question in ['how are you?']:
+        print("I am Fine :)")
+        print("------------------------------------------------------------------")
+    elif question in ['what is your name?']:
+        print("My Name is ChatBot")
+        name=input("what is your name?")
+        print("Nice Name and Nice meeting you", name)
+        print("------------------------------------------------------------------")
+    elif question in ['what is your job?']:
+        print("My Job is to answer your questions")
+        print("------------------------------------------------------------------")
+    elif question in ['what were you doing yesterday?']:
+        print("I was Busy in writting Assignments ")
+        print("------------------------------------------------------------------")
+    elif question in ['quit']:
+        break
+    else:
+        print("I don't understand what you are trying to say")
+        print("------------------------------------------------------------------")
+
+
+
+=========================================== THEORY ===========================================
+
+What is a chatbot?
+
+   A chatbot is a computer program designed to have a conversation with human beings 
+   over the internet. It’s also known as conversational agents, which communicate and 
+   collaborate with human users, through text messaging, in order to accomplish a specific task. 
+   Basically, there are two types of chatbots. The one that uses Artificial Intelligence, and 
+   another one is based on multiple choice scripts.
+
+Why chatbot?
+
+   Chatbots can be useful in many aspects of the customer experience, including 
+   providing customer service, presenting product recommendations and engaging customers 
+   through targeted marketing campaigns. If a customer has an issue with a product, she can 
+   connect with a chatbot to explain the situation and the chatbot can input that information to 
+   provide a recommendation of how to fix the product.
+
+Benifits of Chatbot:
+
+   1. Available 24*7: Since chat bots are basically virtual robots they never get tired and continue to obey 
+                      your command. They will continue to operate every day throughout the year without 
+                      requiring to take a break. This improves your customer satisfaction and helps you rank
+.                     highly in your sector.
+
+   2. Handling Customers: Chatbots on the other hand can simultaneously have conversations with thousands of 
+                          people. No matter what time of the day it is or how many people are contacting you,
+                          every single one of them will be answered instantly.
+
+   3. Automation of repetitive work: Lets be honest, no one likes doing the same work again and again over brief
+                                     period of time. In the case of humans, such tasks are prone to errors.
+                                     Chatbots now help automate tasks which are to be done frequently and at the
+                                     right time.
+
+Applications:
+
+   1. Chatbot in Restaurant 
+   2. Chatbot in Travel
+   3. Chatbot Health Industry
+   4. Chatbot in E-commerce
+   5. Chatbot in Fashion industry
+   6. Chatbot in finance
+==================================================================================================================

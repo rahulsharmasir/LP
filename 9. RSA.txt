@@ -1,0 +1,102 @@
+============================================== PROGRAM (JAVA)=======================================
+
+
+
+
+import java.util.*;
+import java.math.*;
+class RSA
+{
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		int p,q,n,z,d=0,e,i;
+		System.out.println("Enter the number to be encrypted and decrypted :");
+		int msg=sc.nextInt();
+		double c;
+		BigInteger msgback; 
+		System.out.println("Enter 1st prime number p :");
+		p=sc.nextInt();
+		System.out.println("Enter 2nd prime number q :");
+		q=sc.nextInt();
+		
+		n=p*q;
+		z=(p-1)*(q-1);
+		System.out.println("The value of z = "+z);		
+
+		for(e=2;e<z;e++)
+		{
+			if(gcd(e,z)==1)            // e is for public key exponent
+			{				
+				break;
+			}
+		}
+		System.out.println("The value of e = "+e);				
+		for(i=0;i<=9;i++)
+		{
+			int x=1+(i*z);
+			if(x%e==0)      //d is for private key exponent
+			{
+				d=x/e;
+				break;
+			}
+		}
+		System.out.println("The value of d = "+d);		
+		c=(Math.pow(msg,e))%n;
+		System.out.println("Encrypted message is : -");
+		System.out.println(c);
+                //converting int value of n to BigInteger
+		BigInteger N = BigInteger.valueOf(n);
+		//converting float value of c to BigInteger
+		BigInteger C = BigDecimal.valueOf(c).toBigInteger();
+		msgback = (C.pow(d)).mod(N);
+		System.out.println("Derypted message is : -");
+		System.out.println(msgback);
+	}
+	static int gcd(int e, int z)
+	{
+		if(e==0)
+			return z;	
+		else
+			return gcd(z%e,e);
+	}
+}
+
+
+
+
+=========================================== THEORY =======================================
+
+
+
+RSA Algorithm:
+
+   RSA (Rivest–Shamir–Adleman) algorithm is asymmetric cryptography algorithm. 
+   The acronym "RSA" comes from the surnames of Ron Rivest, Adi Shamir and Leonard 
+   Adleman, who publicly described the algorithm in 1977.Asymmetric actually means that it 
+   works on two different keys i.e. Public Key and Private Key. As the name describes that the 
+   Public Key is given to everyone and Private key is kept private.
+
+Advantages:
+
+   1. The RSA algorithm can be implemented relatively quickly.
+   2. The RSA algorithm is secure and reliable for sending private information.
+   3. Public key distribution to consumers is simple.
+
+Disadvantages:
+
+   1. Because RSA only employs asymmetric encryption and complete encryption requires both symmetric and
+      asymmetric encryption, it might occasionally fail.
+   2. Sometimes a third party is needed to confirm the validity of public keys.
+   3. Decryption requires intensive processing on the receiver's end.
+   4. For public data encryption, such as electoral voting, RSA cannot be utilized.
+   5. Decryption requires a large amount of processing power on the receiver's end.
+
+Applications:
+ 
+   1. Secure Data Transmission
+   2. Secure Email Communication
+   3. Digital Signatures
+   4. Secure File Storage
+   5. Key Exchange
+=========================================================================================================

@@ -1,0 +1,93 @@
+============================================= PROGRAM ==========================================
+
+
+
+global N
+N = 4
+def printSolution(board):
+	for i in range(N):
+		for j in range(N):
+			print (board[i][j], end = " ")
+		print()
+def isSafe(board, row, col):
+	# Check this row on left side
+	for i in range(col):
+		if board[row][i] == 1:
+			return False
+	# Check upper diagonal on left side
+	for i, j in zip(range(row, -1, -1),
+		range(col, -1, -1)):
+		if board[i][j] == 1:
+                                	return False
+	# Check lower diagonal on left side
+	for i, j in zip(range(row, N, 1),
+		range(col, -1, -1)):
+		if board[i][j] == 1:
+			return False
+
+	return True
+def solveNQUtil(board, col):
+	# base case: If all queens are placed then return true
+	if col >= N:
+		return True
+	# Consider this column and try placing
+	# this queen in all rows one by one
+	for i in range(N):
+		if isSafe(board, i, col):
+			# Place this queen in board[i][col]
+			board[i][col] = 1
+			# recur to place rest of the queens
+			if solveNQUtil(board, col + 1) == True:
+				return True
+			# If placing queen in board[i][col
+			# doesn't lead to a solution, then
+			# queen from board[i][col]
+			board[i][col] = 0
+	# if the queen can not be placed in any row in
+	# this column col then return false
+	return False
+def solveNQ():
+	board = [ [0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0] ]
+	if solveNQUtil(board, 0) == False:
+		print ("Solution does not exist")
+		return False
+	printSolution(board)
+	return True
+# Driver Code
+solveNQ()
+
+
+
+======================================================= THEORY ====================================================
+
+
+N-Queens Problem-
+
+   The N-Queens problem is a puzzle of placing exactly N queens on an NxN 
+   chessboard, such that no two queens can attack each other in that configuration. Thus, no 
+   two queens can lie in the same row,column or diagnol.
+   In the backtracking algorithm, we consider possible configurations one by one and 
+   backtrack if we hit a dead end.
+   The branch and bound solution is somehow different, it generates a partial solution 
+   until it figures that there's no point going deeper as we would ultimately lead to a dead end.
+   In the backtracking approach, we maintain an 8x8 binary matrix for keeping track of 
+   safe cells (by eliminating the unsafe cells, those that are likely to be attacked) and update it 
+   each time we place a new queen. However, it required O(n^2) time to check safe cell and 
+   update the queen.
+
+   In the 8 queens problem, we ensure the following:
+     1. No two queens share a row
+     2. No two queens share a column
+     3. No two queens share the same left diagnol
+     4. No two queens share the same right diagnol
+
+Application:
+   
+   The CSP, Backtracking and Branch & Bound technique are used in many applications 
+   like Map coloring, optimization problems and network programing.
+
+Input: Board with N x N size.
+
+Output: The algorithm places all the N Queens in N different columns with the given 
+        constraints. 
+====================================================================================================================

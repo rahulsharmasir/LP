@@ -1,0 +1,112 @@
+==================================== PROGRAM (JAVA)========================================
+
+
+
+import java.security.*;
+public class MD55 
+{
+   public static void main(String a[]) 
+ {
+      try
+       {
+	MessageDigest md = MessageDigest.getInstance("MD5"); 
+         System.out.println("Message digest object info:");
+         System.out.println("Algorithm=" + md.getAlgorithm());
+         System.out.println(" Provider=" + md.getProvider());
+         System.out.println(" ToString=" + md.toString());
+         String input = "";
+         md.update(input.getBytes()); 
+         byte[] output = md.digest(); 
+         System.out.println();
+         System.out.println("MD5"+ bytesToHex(output)); 
+         input = "abc";
+         md.update(input.getBytes()); 
+         output = md.digest();
+         System.out.println();
+         System.out.println("MD5" + bytesToHex(output)); 
+         input = "abd";
+	 md.update(input.getBytes()); 
+         output = md.digest();
+            System.out.println();
+    System.out.println("MD5" + bytesToHex(output));
+    input = "abcdefghijklmnopqrstuvwxyz";
+ md.update(input.getBytes()); 
+    output = md.digest(); 
+    System.out.println();
+    System.out.println("MD5" + bytesToHex(output)); 
+    input = "ABCDEFGHIJKLMNOPQRSTUVVVXYZ"; 
+    md.update(input.getBytes());
+    output = md.digest(); 
+    System.out.println();
+    System.out.println("MD5" + bytesToHex(output)); 
+    System.out.println();
+    } 
+   catch (Exception e) 
+  { 
+    System.out.println("Exception:" + e);
+    }
+}
+private static String bytesToHex(byte[] b)
+ {
+  char hexDigit[] ={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+  StringBuffer buf = new StringBuffer();
+  	for (int j = 0; j < b.length; j++) 
+	{
+	    buf.append(hexDigit[(b[j] >> 4) & 0x0f]);
+	    buf.append(hexDigit[b[j] & 0x0f]);
+	  }
+	  return buf.toString();
+ }
+}
+
+
+
+
+==================================================== THEORY ============================================
+
+MD5 Algorithm:
+
+   MD5 is a cryptographic algorithm that provides the hash functions to get a fixed length 128-bit (16 bytes) hash
+   value.
+   The MD5 algorithm is proposed for digital signature app where a large file must be 
+   compressed in a secured manner before being encrypted with a private key under a public key cryptosystem like 
+   RSA.
+
+The MD5 algorithm includes the following four steps:
+
+   Step1: Append Extra Bits (Padding Bits)
+
+         It is the initial step of the algorithm. In this step, we append padding bits (extra bits) 
+         to the given message or string. Because of this, the length of the original message or string 
+         corresponds to 418 modulo 512. The reason to append bits is that the length must be the 
+         multiple of 512 bits length.
+  
+   Step 2: Append Length
+
+           After doing the padding, append length by adding 64-bits at the end. It records the 
+           length of the input given by the user. It gives the resulting message of the length that is 
+           multiple of 512 bit.
+
+   Step 3: Create and Initialize MD buffer
+
+           MD buffer is a four-word (A, B, C, D) buffer in which each word is 32-bit register. It 
+           is used to compute the value of the message digest.
+
+   Step 4: Process Message in 16-word Block
+
+           The MD5 algorithm uses the auxiliary functions that accept the inputs as three 32-bit numbers and
+           produces 32-bits as result
+
+Advantages of MD5
+
+   1. Easy to compare small hashes.
+   2. Low resource consumption
+   3. Storing password is convenient.
+   4. Integrity check cannot be tampered with.
+
+Disadvanttages:
+
+   1. When compared to other algorithms like the SHA algorithm, MD5 is comparatively slow.
+   2. It is possible to construct the same hash function for two distinct inputs using MD5.
+   3. MD5 is less secure when compared to the SHA algorithm since MD5 is more vulnerable to collision attacks.
+===============================================================================================================

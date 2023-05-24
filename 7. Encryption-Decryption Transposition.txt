@@ -1,0 +1,91 @@
+======================================== PROGRAM =====================================
+
+
+
+
+import math
+
+
+def encryptMessage(key, message):
+    ciphertext = [''] * key
+    for col in range(key):
+        position = col
+        while position < len(message):
+            ciphertext[col] += message[position]
+            position += key
+    return ''.join(ciphertext)  # Cipher text
+
+
+def decryptMessage(key, message):
+    numOfColumns = math.ceil(len(message) / key)
+    print("numOfColumns = ", len(message) / key)
+    print("numOfColumns = ", numOfColumns)
+    numOfRows = key
+    print("numOfRows = ", numOfRows)
+    numOfShadedBoxes = (numOfColumns * numOfRows) - len(message)
+    print("numOfRows = ", numOfShadedBoxes)
+    plaintext = [' '] * numOfColumns
+    col = 0
+    row = 0
+
+
+    for symbol in message:
+        plaintext[col] += symbol
+        print(" plaintext= ",plaintext)
+        col += 1
+        if (col == numOfColumns) or (col == numOfColumns - 1 and row >= numOfRows - numOfShadedBoxes):
+            col = 0
+            row += 1
+    return ''.join(plaintext)
+
+
+myMessage = 'Transposition Cipher'
+myKey = 3
+print("Encryption Process starts")
+print("Plain Text is: Transposition Cipher ")
+ciphertext = encryptMessage(myKey, myMessage)
+print("Length of message ",len(myMessage))
+print("Cipher Text is==>", ciphertext)
+print("Decryption Process Starts:")
+
+pt = decryptMessage(myKey, ciphertext)
+print("Plain Text is==>", pt)
+
+
+============================================= THEORY ==================================================
+
+
+Columnar Transposition
+
+Following are two types of Columnar Transposition
+
+1) Simple Columnar Transposition:
+
+   The columnar transposition cipher is a transposition cipher that follows a simple rule 
+   for mixing up the characters in the plaintext to form the cipher-text. It can be combined with 
+   other ciphers, such as a substitution cipher, the combination of which can be more difficult to 
+   break than either cipher on its own. 
+   The cipher uses a columnar transposition to greatly improve its security.
+
+Algorithm: 
+
+   1. The message is written out in rows of a fixed length.
+   2. Read out again column by column according to given order or in random order. 
+   3. According to order write cipher text.
+
+2) Double Columnar Transposition:
+
+   A single Columnar Transposition can be attacked by guessing possible column 
+   lengths by writing the message from columns (with the wrong order because the key is 
+   unknown) and then trying to get the possible message.
+   Therefore to make it stronger, a double transposition was used. This is simple 
+   columnar transposition technique applied twice. Here the same key can be used for both 
+   transpositions or two different keys can be used.
+
+Algorithm:-
+
+   1. Write the plain text message row-by-row in a rectangle of a predefined size
+   2. Read the message column-by-column in any random order.
+   3. The message thus obtained is cipher text message of round one
+   4. Repeat step 1 to3 as many times as desired.
+===========================================================================================================
