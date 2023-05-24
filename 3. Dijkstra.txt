@@ -1,0 +1,73 @@
+======================================= PROGRAM =================================
+
+
+graph={
+    'A':{'B':2,'C':3},
+    'B':{'D':3,'E':1},
+    'C':{'F':2},
+    'D':{},
+    'E':{'F':1},
+    'F':{}
+	}
+
+import heapq
+def dijkstra(graph,node):
+	distances={node:float('inf') for node in graph}
+	print("distances::",distances)
+	distances[node]=0
+	previous={node:None for node in graph}
+	queue=[(0,node)]
+	print("Value of QUEUE ==> ",queue)
+	
+	while queue:
+		current_distance,current_node=heapq.heappop(queue)
+		print("Current Distance and Node ==> ",current_distance)
+		print("Current Node ==> ",current_node)
+		# relaxation
+		for next_node,weight in graph[current_node].items():
+			distance_temp=current_distance+weight
+			if distance_temp<distances[next_node]:
+				distances[next_node]=distance_temp
+				previous[next_node]=current_node
+				heapq.heappush(queue,(distance_temp,next_node))
+			print("Distances::",distances)
+	return distances,previous
+
+#Driver Code
+Node_distance, Path = dijkstra(graph,'A')
+print(Node_distance)
+print(Path)
+
+
+======================================== THEORY ========================================
+
+
+Dijkstra Algorithm
+
+   Dijkstra's Algorithm finds the shortest path between a given node (which is called the "source node") and all other nodes in a graph. This algorithm uses  the weights of the edges to find the path that minimizes the total distance (weight) between the source node and all other nodes.
+
+Advantages of Dijkstra’s Algorithm
+
+   1. It is used in Google Maps.
+   2. It is employed to identify the shortest path.
+   3. It is very popular in the Geographical Maps.
+   4. It is used to locate the points on the map that correspond to the graph’s vertices.
+   5. In order to identify the Open Shortest Path First, it is needed in IP routing.
+   6. The telephone network makes use of it.
+
+Disadvantages of Dijkstra Algorithm
+
+   1. It conducts a blind scan, which takes a lot of processing time.
+   2. It is unable to manage sharp edges. As a result, acyclic graphs are produced, and the ideal shortest path is frequently impossible to find.
+
+Applications of Dijkstra’s Algorithm
+
+   1. To determine the quickest route
+   2. In applications for social networking 
+   3. Within a phone network
+   4. To locate the places on the map
+
+Complexity of Dijkstra’s Algorithm
+
+   1. The time complexity is: O(E Log V).
+   2. The space complexity is: O(V).
